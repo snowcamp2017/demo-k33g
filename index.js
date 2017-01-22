@@ -28,7 +28,7 @@ let sensor = new Sensor({
 });
 sensor.start("generateData");
 
-app.get('/sensors/babs-sensor', (req, res) => {
+app.get('/sensors/k33g-sensor', (req, res) => {
   res.send(sensor.getData());
 });
 //----------------------------------------------------
