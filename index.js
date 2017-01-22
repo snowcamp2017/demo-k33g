@@ -11,6 +11,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(express.static('public'));
 
+app.use(function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+});
+
 app.get('/hello/world', (req, res) => {
   res.send({
     message: "Hello 🌏!"
@@ -29,8 +34,6 @@ let sensor = new Sensor({
 sensor.start("generateData");
 
 app.get('/sensors/k33g-sensor', (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.send(sensor.getData());
 });
 //----------------------------------------------------
