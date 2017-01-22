@@ -17,8 +17,21 @@ app.get('/hello/world', (req, res) => {
   })
 });
 
-// ...
+//--- 1st update -------------------------------------
+const Sensor = require('./Sensor').Sensor;
 
+let sensor = new Sensor({
+  id:`k33g-sensor`,
+  minValue:-42,
+  maxValue:42,
+  delay:2000
+});
+sensor.start("generateData");
+
+app.get('/sensors/babs-sensor', (req, res) => {
+  res.send(sensor.getData());
+});
+//----------------------------------------------------
 
 
 app.listen(port);
